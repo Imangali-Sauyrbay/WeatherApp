@@ -27,10 +27,10 @@ module.exports = async function (city = '', lang = 'en'){
         const celsius = Math.round((data.main.temp - 32 ) * 5/9);
 
         const res = await translate([data.name,data.weather[0].main, data.sys.country, 'Weather', 'Country'].join(','), {from:'en',to:lang})
-        const [name,weather,country,wName,cName] = res.text.split(', ');
+        const [name,weather,country,wName,cName] = res.text.split(',');
 
         return{
-            weather:`${name}: ${celsius}℃ , ${wName}: ${weather}, ${cName}: ${country}.`, 
+            weather:`${name}: ${celsius}℃, ${wName}: ${weather}, ${cName}: ${country}.`, 
             error:null
         }
     }catch(error){
