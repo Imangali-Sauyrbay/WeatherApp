@@ -21,8 +21,8 @@ body {
     background-image: radial-gradient(circle at bottom right,rgba(235, 250, 102, 0.6) 0%, rgba(194, 207, 75, 0.4)  20%, transparent 100%), url(http://pattern4site.ru/images/woods/_rebig/12-fon-dlya-sayta.jpg);
     border: rgb(117, 65, 5) solid 3px;
     border-radius: 20% 20% 4% 4%/ 40%;
-    width: 40%;
-    max-width: 51rem;
+    width: 90%;
+    max-width: 40rem;
     min-height: 20rem;
     height: auto;
     margin: 0 auto;
