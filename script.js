@@ -14,9 +14,9 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/', async (req,res)=>{
-    const {city} = req.body
+    const {city, lang} = req.body
     
-    const {weather, error} = await weatherRequest(city)
+    const {weather, error} = await weatherRequest(city,lang)
     res.render('index',{weather,error})
 })
 

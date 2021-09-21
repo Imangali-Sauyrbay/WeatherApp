@@ -1,7 +1,9 @@
 const { json } = require('body-parser');
 const rp = require('request-promise');
+const translate = require('@iamtraction/google-translate');
 
-module.exports = async function (city = ''){
+
+module.exports = async function (city = '', lang = 'en'){
     if(!city) return {
         weather:null, 
         error:'Empty Request!'
@@ -23,8 +25,12 @@ module.exports = async function (city = ''){
     try{
         const data = await rp(options)
         const celsius = Math.round((data.main.temp - 32 ) * 5/9);
+
+        const res = await translate([data.name,data.weather[0].main, data.sys.country, 'Weather', 'Country'].join(','), {from:'en',to:lang})
+        const [name,weather,country,wName,cName] = res.text.split(', ');
+
         return{
-            weather:`${data.name}: ${celsius}C , ${data.weather[0].main}, ${data.sys.country}.`, 
+            weather:`${name}: ${celsius}℃ , ${wName}: ${weather}, ${cName}: ${country}.`, 
             error:null
         }
     }catch(error){
