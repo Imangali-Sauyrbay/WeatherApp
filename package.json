@@ -4,7 +4,7 @@
   "description": "my first steps into node",
   "main": "script.js",
   "scripts": {
-    "start": "nodemon script.js"
+    "start": "node script.js"
   },
   "keywords": [
     "node",
