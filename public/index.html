@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <title>Weather</title>
+    <style>
+        .rotate-center{animation:rotate-center 1s linear infinite both}
+        @keyframes rotate-center{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="app__header">
+            <svg class="rotate-center" style="display: none;" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+                        <stop stop-color="#fff" stop-opacity="0" offset="0%"/>
+                        <stop stop-color="#fff" stop-opacity=".631" offset="63.146%"/>
+                        <stop stop-color="#fff" offset="100%"/>
+                    </linearGradient>
+                </defs>
+                <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)">
+                        <path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" stroke-width="2"/>
+                        <circle fill="#fff" cx="36" cy="18" r="1"/>
+                    </g>
+                </g>
+            </svg>
+            <h2 class="responce"></h2>
+            <p class="error"></p>
+        </div>
+        <form action="/" method="POST" class="app__content">
+            <label for="city">Город</label>
+            <input type="text" id="city" placeholder="City Name" name="city" autocomplete="off">
+            <div>
+                <label><input type="radio" value="en" name="lang" checked/><p>EN</p></label>
+                <label><input type="radio" value="ru" name="lang"/><p>RU</p></label>
+                <label><input type="radio" value="kk" name="lang"/><p>KZ</p></label>
+            </div>
+            <button type="submit" class="btn">See The Weather</button>
+        </form>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        const btn = document.querySelector('.btn');
+        const loader = document.querySelector("svg");
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            btn.setAttribute('disabled','true');
+
+            const body = JSON.stringify({
+                  city:e.target.querySelector('#city').value,
+                  lang: e.target.lang.value
+            })
+
+            e.target.querySelector('#city').value = "";
+            
+            loader.style.display = 'block';
+            document.querySelector(".responce").textContent = '';
+            document.querySelector(".error").textContent = '';
+
+            fetch("/",{
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: body
+            })
+            .then(res => res.json())
+            .then(data => {
+                btn.removeAttribute('disabled');
+                loader.style.display = 'none';
+                if(data.error){
+                    document.querySelector(".error").textContent = data.error;
+                    
+                }else if(data.weather){
+                    document.querySelector(".responce").textContent = data.weather;
+                }
+            })
+        })
+    </script>
+</body>
+</html>

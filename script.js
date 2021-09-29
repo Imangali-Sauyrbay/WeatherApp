@@ -3,21 +3,21 @@ const bodyParser = require('body-parser');
 const weatherRequest = require('./requests/weather.request')
 
 const app = exp();
-app.set('view engine','ejs');
 app.use(exp.static('public'))
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 
 
 app.get('/',(req,res)=>{
-    res.render('index',{weather:null,error:null})
+    res.sendFile('index.html')
 })
 
 app.post('/', async (req,res)=>{
-    const {city, lang} = req.body
-    
-    const {weather, error} = await weatherRequest(city,lang)
-    res.render('index',{weather,error})
+    const {city, lang} = req.body;
+    const result = await weatherRequest(city,lang);
+    res.json(result);
 })
 
 const port = process.env.PORT;
