@@ -8,17 +8,29 @@ html {
 }
 
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-size: 1rem;
     background-color: #ccc;
-    background-image: linear-gradient(to top left,rgba(235, 250, 102, 0.5) 0%, rgba(194, 207, 75, 0.4)  20%, transparent 100%), url(./../img/grass-pattern.jpg);
+    background-image: linear-gradient(
+            to top left,
+            rgba(235, 250, 102, 0.5) 0%,
+            rgba(194, 207, 75, 0.4) 20%,
+            transparent 100%
+        ),
+        url(./../img/grass-pattern.jpg);
     background-repeat: repeat;
     width: 100%;
     height: 100vh;
 }
 
 .app {
-    background-image: radial-gradient(circle at bottom right,rgba(235, 250, 102, 0.6) 0%, rgba(194, 207, 75, 0.4)  20%, transparent 100%), url(./../img/wood-pattern.jpg);
+    background-image: radial-gradient(
+            circle at bottom right,
+            rgba(235, 250, 102, 0.6) 0%,
+            rgba(194, 207, 75, 0.4) 20%,
+            transparent 100%
+        ),
+        url(./../img/wood-pattern.jpg);
     border: rgb(117, 65, 5) solid 3px;
     border-radius: 20% 20% 4% 4%/ 40%;
     width: 90%;
@@ -38,21 +50,28 @@ body {
     box-shadow: rgba(16, 51, 16, 0.7) -1rem -1rem 0.4rem 0;
 }
 
-.app__header>h2 {
+.app__header > h2 {
     color: rgb(11, 128, 0);
     font-size: 2rem;
     font-weight: 900;
     margin-bottom: 1rem;
-    text-shadow: white 0 0 2px,white 0 0 2px,white 0 0 2px,white 0 0 2px,white 0 0 2px,white 0 0 2px;
+    text-shadow:
+        white 0 0 2px,
+        white 0 0 2px,
+        white 0 0 2px,
+        white 0 0 2px,
+        white 0 0 2px,
+        white 0 0 2px;
 }
 
-.app__header>p {
+.app__header > p {
     padding: 0.1rem 0.3rem;
     font-size: 1.5rem;
     font-style: italic;
     margin-bottom: 1.5rem;
     color: rgb(255, 0, 0);
-    text-shadow: rgb(201, 88, 253) -2px -2px 1rem,
+    text-shadow:
+        rgb(201, 88, 253) -2px -2px 1rem,
         rgb(252, 80, 131) 2px 2px 1rem;
     background-color: rgba(49, 49, 49, 0.753);
     border-radius: 10%;
@@ -69,7 +88,7 @@ body {
     font-size: 18px;
 }
 
-.app__content > div{
+.app__content > div {
     display: flex;
     margin-bottom: 1rem;
 }
@@ -80,7 +99,7 @@ body {
     margin-left: 10px;
 }
 
-.app__content>input {
+.app__content > input {
     color: whitesmoke;
     margin: 1rem 0;
     padding: 0.5rem 1rem;
@@ -90,26 +109,26 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.app__content>input:focus {
+.app__content > input:focus {
     outline: none;
     background-color: rgba(70, 69, 69, 0.5);
     border-bottom-color: rgb(30, 255, 0);
 }
 
-.app__content>input::placeholder {
+.app__content > input::placeholder {
     color: rgb(157, 255, 181);
 }
 
-.app__content>label {
+.app__content > label {
     align-self: flex-start;
     font-size: 2rem;
     color: rgb(255, 94, 0);
-    text-shadow: black 0 0 1rem,
+    text-shadow:
+        black 0 0 1rem,
         rgb(255, 196, 0) 3px 3px 1rem,
         rgb(255, 42, 4) -3px -3px 1rem;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: rgb(17, 17, 17);
-
 }
 
 .btn {
@@ -127,6 +146,20 @@ body {
     transform: scale(1.1);
     cursor: pointer;
     background-image: linear-gradient(to bottom left, red, yellow);
+}
+
+.rotate-center {
+    animation: rotate-center 1s linear infinite both;
+}
+
+@keyframes rotate-center {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes btn {
